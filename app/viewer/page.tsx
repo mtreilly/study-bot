@@ -1,5 +1,5 @@
-import dynamic from "next/dynamic";
 import Display from "./Display";
+import "../../src/styles/globals.css";
 
 export default async function Page() {
   return (

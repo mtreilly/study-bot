@@ -1,8 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  content: ["./src/**/*.{js,jsx,ts,tsx,svg}", "./src/**/*.html", "./app/**/*.{js,jsx,ts,tsx,svg}", "./app/**/*.html"],
+  safelist: [],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        xs: "420px",
+      },
+    },
   },
-  plugins: [],
+  corePlugins: {
+    animation: true,
+  },
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 };

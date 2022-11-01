@@ -1,5 +1,6 @@
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
+import "../src/styles/globals.css";
 
 export default function RootLayout({
   // Layouts must accept a children prop.

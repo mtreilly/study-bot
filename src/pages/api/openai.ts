@@ -17,6 +17,12 @@ const openai = async (req: NextApiRequest, res: NextApiResponse) => {
     const completion = await openai.createCompletion({
       model: "text-davinci-002",
       prompt: `${prePrompt}\n\n${queryText}\n\nQ:`,
+      temperature: 0.6,
+      max_tokens: 500,
+      top_p: 1,
+      frequency_penalty: 0.0,
+      presence_penalty: 0.0,
+      stop: ["\n"],
     });
     console.log(completion.data.choices);
     const result = completion.data.choices[0].text;

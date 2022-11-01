@@ -16,14 +16,12 @@ export default function Display() {
   const handleMouseUp = () => {
     const selection = window.getSelection();
     if (selection) {
-      console.log(`Selected text: ${selection.toString()}`);
       setHighlighted(selection.toString());
     }
   };
 
   useEffect(() => {
     if (highlighted) {
-      console.log(`Highlighted text: ${highlighted}`);
       const res = fetch("http://localhost:3000/api/openai", {
         method: "POST",
         headers: {
@@ -40,12 +38,16 @@ export default function Display() {
   }, [highlighted]);
 
   return (
-    <div onMouseUp={handleMouseUp}>
-      <DisplayPDF />
-      <hr />
-      {highlighted}
-      <hr />
-      {qa.result}
+    <div className="grid grid-cols-3 bg-green-400" onMouseUp={handleMouseUp}>
+      <div className="col-span-2">
+        <DisplayPDF />
+      </div>
+      <div className="pl-2">
+        <h2>Questions</h2>
+        <div>
+        {qa.result}
+        </div>
+      </div>
     </div>
   );
 }
