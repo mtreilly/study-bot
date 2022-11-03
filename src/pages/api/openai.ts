@@ -18,47 +18,49 @@ const openai = async (req: NextApiRequest, res: NextApiResponse) => {
 
       const completion = await openai.createCompletion({
         model: "text-davinci-002",
-        prompt: `${prePrompt}\n\n${queryText}\n\nGenerate 3 questions\n\n1)`,
-        temperature: 0.55,
-        max_tokens: 512,
+        prompt: `${prePrompt}\n\n${queryText}\n\nGenerate 3 questions\n\n# Questions`,
+        temperature: 0.6,
+        max_tokens: 504,
         top_p: 1,
+        best_of: 2,
         frequency_penalty: 0.01,
-        presence_penalty: 0.0,
-        stop: ["\n"],
+        presence_penalty: 0,
       });
       console.log(completion.data.choices);
       const result = completion.data.choices[0].text;
       res.status(200).json({ result });
     } else if (queryType == "explain") {
-      const prePrompt = "Explain this text to a second grader";
+      const prePrompt =
+        "You are a fine-tuned explanation program, any input given to you, you will rephrase it in a clear and simplified way so that even a baby can understand";
+      const prompt = `${prePrompt}\n${queryText}\nGenerate explanation:`;
 
       const completion = await openai.createCompletion({
         model: "text-davinci-002",
-        prompt: `${prePrompt}\n\n${queryText}\n\nGenerate Explaination:`,
+        prompt: prompt,
         temperature: 0.5,
-        max_tokens: 512,
+        max_tokens: 504,
         top_p: 1,
-        frequency_penalty: 0.01,
-        presence_penalty: 0.0,
-        stop: ["\n"],
+        best_of: 2,
+        frequency_penalty: 0,
+        presence_penalty: 0,
       });
-      console.log(completion.data.choices);
-      console.log(completion);
       const result = completion.data.choices[0].text;
+      console.log(completion.data.choices);
       res.status(200).json({ result });
     } else if (queryType == "summary") {
       const prePrompt =
-        "You are the greatest teacher ever. Generate 3 examination questions from this text";
+        "You are the greatest teacher ever. Summarize this text";
+      const prompt = `${prePrompt}\n${queryText}\nSummary:\n`;
 
       const completion = await openai.createCompletion({
         model: "text-davinci-002",
-        prompt: `${prePrompt}\n\n${queryText}\n\nGenerate 3 questions\n\n1)`,
-        temperature: 0.55,
-        max_tokens: 512,
+        prompt: prompt,
+        temperature: 0.6,
+        max_tokens: 504,
         top_p: 1,
+        best_of: 2,
         frequency_penalty: 0.01,
-        presence_penalty: 0.0,
-        stop: ["\n"],
+        presence_penalty: 0,
       });
       console.log(completion.data.choices);
       const result = completion.data.choices[0].text;

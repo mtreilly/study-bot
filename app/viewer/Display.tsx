@@ -23,11 +23,11 @@ export default function Display() {
   };
 
   return (
-    <div className="grid grid-cols-4 bg-green-400" onMouseUp={handleMouseUp}>
+    <div className="grid grid-cols-5 bg-green-400" onMouseUp={handleMouseUp}>
       <div className="col-span-3">
         <DisplayPDF />
       </div>
-      <div className="relative col-span-1 pl-2">
+      <div className="relative col-span-2 pl-2">
         <div>
           <h2 className="text-xl">Highlighted</h2>
           <div>{highlighted}</div>
