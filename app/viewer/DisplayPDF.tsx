@@ -8,7 +8,7 @@ export default function DisplayPDF() {
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
   return (
     <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.15.349/build/pdf.worker.js">
-      <div style={{ height: "75vh" }}>
+      <div style={{ height: "100vh" }}>
         <Viewer
           fileUrl={"./in-context.pdf"}
           plugins={[defaultLayoutPluginInstance]}
